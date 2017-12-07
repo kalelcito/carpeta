@@ -1,0 +1,10 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+all:
+  max_articulos: 6
+  empresa: Empresa Responsable
+  template:
+    no: <i class="fa fa-times"></i>
+    si: <i class="fa fa-check"></i>

@@ -1,0 +1,23 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+    charset: UTF-8
+    X-UA-Compatible: IE=edge
+  metas:
+    title:        Carpeta Virtual
+    viewport:     width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no
+    apple-mobile-web-app-capable: yes
+    description:  Carpeta Virtual
+    keywords:     Carpeta Virtual
+    language:     es
+    robots:       noindex, nofollow
+
+  stylesheets:    [/bootstrap/css/bootstrap.min.css,/css/font-awesome/css/font-awesome.min.css,/css/ionicons/css/ionicons.min.css,/dist/css/AdminLTE.min.css,/dist/css/skins/skin-blue.css,/plugins/iCheck/flat/blue.css,/plugins/datepicker/datepicker3.css,/plugins/daterangepicker/daterangepicker-bs3.css,/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css]
+
+  javascripts:    [/plugins/jQuery/jQuery-2.1.4.min.js,/js/jquery/jquery-ui.min.js,/bootstrap/js/bootstrap.min.js,/js/moment/moment.min.js,/plugins/daterangepicker/daterangepicker.js,/plugins/datepicker/bootstrap-datepicker.js,/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js,/plugins/slimScroll/jquery.slimscroll.min.js,/plugins/fastclick/fastclick.js,/dist/js/app.min.js,/dist/js/pages/dashboard.js,/dist/js/demo.js]
+
+  has_layout:     true
+  layout:         layout

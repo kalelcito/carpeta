@@ -1,0 +1,931 @@
+certificado:
+  tableName: certificado
+  columns:
+    id_certificado:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    nombre:
+      type: string(128)
+    descripcion:
+      type: string(250)
+certificado_seccion:
+  tableName: certificado_seccion
+  columns:
+    id_seccion:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_certificado:
+      type: integer(11)
+    titulo:
+      type: string(128)
+    descripcion:
+      type: string
+    calificacion:
+      type: decimal(3)
+      scale: 2
+comite:
+  tableName: comite
+  actAs:
+    Timestampable:
+      created:
+        alias: creado
+        disabled: false
+        format: creado
+      updated:
+        alias: actualizado
+        disabled: false
+        name: actualizado
+  columns:
+    id_comite:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_unidad:
+      type: integer(11)
+    nombre_comite:
+      type: string(128)
+    id_usuario_presidente:
+      type: integer(11)
+    creado:
+      type: timestamp
+    actualizado:
+      type: timestamp
+    calificacion:
+      type: decimal(3)
+      scale: 2
+    minimos:
+      default: 0
+      type: boolean
+  relations:
+    unidad:
+      onDelete: CASCADE
+      local: id_unidad
+      foreign: id_unidad
+    Usuario:
+      class: usuario
+      foreignAlias: Comite
+      local: id_usuario_presidente
+      foreign: id_usuario
+    Usucom:
+      class: usuario
+      refClass: comite_usuarios
+      local: id_comite
+      foreign: id_usuario
+direccion:
+  tableName: direccion
+  columns:
+    id_direccion:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    pais:
+      type: string(64)
+      notnull: true
+    estado:
+      type: string(64)
+      notnull: true
+    ciudad:
+      type: string(128)
+      notnull: true
+    municipio:
+      type: string(128)
+      notnull: true
+    delegacion:
+      type: string(128)
+      notnull: true
+    direccion:
+      type: string
+      notnull: true
+    referencia:
+      type: string
+      notnull: true
+    numero:
+      type: string(11)
+      notnull: true
+    cp:
+      type: string(11)
+      notnull: true
+    id_unidad:
+      type: integer(11)
+      notnull: true
+    id_empresa:
+      type: integer(11)
+      notnull: true
+empresa:
+  tableName: empresa
+  actAs:
+    Timestampable:
+      created:
+        alias: creado
+        disabled: false
+        name: creado
+      updated:
+        alias: actualizado
+        disabled: false
+        name: actualizado
+  columns:
+    id_empresa:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    nombre_empresa:
+      type: string(250)
+    logo:
+      type: string(300)
+    nombre_contacto:
+      type: string(240)
+    email:
+      type: string(250)
+    telefono:
+      type: string(50)
+    activar_sucursales:
+      type: boolean
+    tipo:
+      type: boolean
+    pais:
+      type: string(64)
+    estado:
+      type: string(64)
+    ciudad:
+      type: string(128)
+    municipio:
+      type: string(128)
+    numero:
+      type: string(11)
+    direccion:
+      type: string
+    delegacion:
+      type: string(128)
+    cp:
+      type: string(11)
+    referencia:
+      type: string
+    creado:
+      type: timestamp
+    actualizado:
+      type: timestamp
+programa:
+  tableName: programa
+  actAs:
+    Timestampable:
+      created:
+        alias: creado
+        disabled: false
+        name: creado
+      updated:
+        alias: actualizado
+        name: actualizado
+        disabled: false
+  columns:
+    id_programa:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_requisito:
+      type: integer(11)
+      notnull: true
+    id_comite:
+      type: integer(11)
+    nombre:
+      type: string(128)
+    coordinador:
+      type: string(150)
+    existencia:
+      type: decimal(3)
+      scale: 2
+    difusion:
+      type: decimal(3)
+      scale: 2
+    participacion:
+      type: decimal(3)
+      scale: 2
+    mejora:
+      type: decimal(3)
+      scale: 2
+    vinculacion:
+      type: decimal(3)
+      scale: 2
+    calificacion:
+      type: decimal(3)
+      scale: 2
+    fecha_elaboracion:
+      type: date
+    revisor1:
+      type: string(128)
+    fecha_revision:
+      type: date
+    revisor2:
+      type: string(128)
+    fecha_revision2:
+      type: date
+    revisor3:
+      type: string(128)
+    fecha_revision3:
+      type: date
+    revisor4:
+      type: string(128)
+    fecha_revision4:
+      type: date
+    revisor5:
+      type: string(128)
+    fecha_revision5:
+      type: date
+    id_usuario_elaboro:
+      type: integer(11)
+    id_consultor:
+      type: integer(11)
+    fecha_compromiso:
+      type: date
+    no_revision:
+      type: integer(11)
+    id_usuario_reviso:
+      type: integer(11)
+    id_usuario_modifico:
+      type: integer(11)
+    fecha_modifico:
+      type: date
+    creado:
+      type: timestamp
+    actualizado:
+      type: timestamp
+    comentario:
+      type: string(600)
+    fecha_revision:
+      type: date
+  relations:
+    requisito:
+      onDelete: CASCADE
+      local: id_requisito
+      foreign: id_requisito
+    comite:
+      onDelete: CASCADE
+      local: id_comite
+      foreign: id_comite
+programa_anexos:
+  tableName: programa_anexos
+  actAs:
+    Timestampable:
+      created:
+        alias: creado
+        disabled: false
+        name: creado
+      updated:
+        alias: actualizado
+        disabled: false
+        name: actualizado
+  columns:
+    id_anexo:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_programa:
+      primary: true
+      type: integer(11)
+    nombre:
+      type: string(250)
+    url:
+      type: string(250)
+    tipo_archivo:
+      type: string(8)
+    comentarios:
+      type: string
+    creado:
+      type: timestamp
+    actualizado:
+      type: timestamp
+  relations:
+    programa:
+      onDelete: CASCADE
+      local: id_programa
+      foreign: id_programa
+programa_seccion:
+  tableName: programa_seccion
+  actAs:
+    Timestampable:
+      created:
+        alias: creado
+        disabled: false
+        name: creado
+      updated:
+        alias: actualizado
+        disabled: false
+        name: actualizado
+  columns:
+    id_ps:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_programa:
+      type: integer(11)
+      notnull: true
+    id_seccion:
+      type: integer(11)
+      notnull: true
+    id_usuario_creo:
+      type: integer(11)
+    text_content:
+      type: string
+    comentario_consultor:
+      type: string
+    revision:
+      type: integer(1)
+    activo:
+      default: '1'
+      type: integer(1)
+    creado:
+      type: timestamp
+    actualizado:
+      type: timestamp
+  relations:
+    programa:
+      onDelete: CASCADE
+      local: id_programa
+      foreign: id_programa
+requisito:
+  tableName: requisito
+  columns:
+    id_requisito:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    titulo:
+      type: string
+      notnull: true
+    descripcion:
+      type: string
+    guia_de_apoyo:
+      type: string
+seccion10:
+  tableName: seccion10
+  columns:
+    id_ps:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_programa:
+      type: integer(11)
+    id_seccion:
+      type: integer(11)
+    id_usuario_creo:
+      type: integer(11)
+    comentario:
+      type: string(800)
+    creado:
+      type: date
+  relations:
+    Programa:
+      class: programa
+      foreignAlias: Seccion10
+      onDelete: CASCADE
+      local: id_programa
+      foreign: id_programa
+seccion5:
+  tableName: seccion5
+  columns:
+    id_ps:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_programa:
+      type: integer(11)
+    id_seccion:
+      type: integer(11)
+    directivos:
+      type: string(5)
+    personalno_sin:
+      type: string(5)
+    personal_sin:
+      type: string(5)
+    t_personal:
+      type: string(5)
+    f_personal:
+      type: string(5)
+    o_grupos:
+      type: string(5)
+    text_otros:
+      type: string(150)
+    creado:
+      type: date
+  relations:
+    Programa:
+      class: programa
+      foreignAlias: Seccion5
+      onDelete: CASCADE
+      local: id_programa
+      foreign: id_programa
+seccion6:
+  tableName: seccion6
+  columns:
+    id_ps:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_programa:
+      type: integer(11)
+    id_seccion:
+      type: integer(11)
+    tablero:
+      type: string(5)
+    circular:
+      type: string(5)
+    correo:
+      type: string(5)
+    informe:
+      type: string(5)
+    informal:
+      type: string(5)
+    otro_medio:
+      type: string(5)
+    text_otro:
+      type: string(150)
+    creado:
+      type: date
+  relations:
+    Programa:
+      class: programa
+      foreignAlias: Seccion6
+      onDelete: CASCADE
+      local: id_programa
+      foreign: id_programa
+seccion8:
+  tableName: seccion8
+  columns:
+    id_ps:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_seccion:
+      type: integer(11)
+    id_programa:
+      type: integer(11)
+    id_usuario_creo:
+      type: integer(11)
+    p_d:
+      type: integer(11)
+    t_p_d:
+      type: string(250)
+    p_a:
+      type: integer(11)
+    t_p_a:
+      type: string(250)
+    p_c:
+      type: integer(11)
+    t_p_c:
+      type: string(250)
+    p_p:
+      type: integer(11)
+    t_p_p:
+      type: string(250)
+    p_o:
+      type: integer(11)
+    t_p_o:
+      type: string(250)
+    d_d:
+      type: integer(11)
+    t_d_d:
+      type: string(250)
+    d_a:
+      type: integer(11)
+    t_d_a:
+      type: string(250)
+    d_c:
+      type: integer(11)
+    t_d_c:
+      type: string(250)
+    d_p:
+      type: integer(11)
+    t_d_p:
+      type: string(250)
+    d_o:
+      type: integer(11)
+    t_d_o:
+      type: string(250)
+    e_d:
+      type: integer(11)
+    t_e_d:
+      type: string(250)
+    e_a:
+      type: integer(11)
+    t_e_a:
+      type: string(250)
+    e_c:
+      type: integer(11)
+    t_e_c:
+      type: string(250)
+    e_p:
+      type: integer(11)
+    t_e_p:
+      type: string(250)
+    e_o:
+      type: integer(11)
+    t_e_o:
+      type: string(250)
+    r_d:
+      type: integer(11)
+    t_r_d:
+      type: string(250)
+    r_a:
+      type: integer(11)
+    t_r_a:
+      type: string(250)
+    r_c:
+      type: integer(11)
+    t_r_c:
+      type: string(250)
+    r_p:
+      type: integer(11)
+    t_r_p:
+      type: string(250)
+    r_o:
+      type: integer(11)
+    t_r_o:
+      type: string(250)
+    fecha_creado:
+      type: date
+    porcentaje:
+      type: integer(11)
+  indexes:
+    id_ps:
+      fields: [id_ps]
+  relations:
+    Programa:
+      class: programa
+      foreignAlias: Seccion8
+      onDelete: CASCADE
+      local: id_programa
+      foreign: id_programa
+seccion9:
+  tableName: seccion9
+  columns:
+    id_ps:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_programa:
+      type: integer(11)
+    id_seccion:
+      type: integer(11)
+    id_usuario_creo:
+      type: integer(11)
+    anio1:
+      type: string(50)
+    anio2:
+      type: string(50)
+    anio3:
+      type: string(50)
+    anio4:
+      type: string(50)
+    anio5:
+      type: string(50)
+    indicador:
+      type: string
+    ind_a1a:
+      type: string(50)
+    ind_a2a:
+      type: string(50)
+    ind_a3a:
+      type: string(50)
+    ind_a4a:
+      type: string(50)
+    ind_a5a:
+      type: string(50)
+    indicador2:
+      type: string
+    ind_a1b:
+      type: string(50)
+    ind_a2b:
+      type: string(50)
+    ind_a3b:
+      type: string(50)
+    ind_a4b:
+      type: string(50)
+    ind_a5b:
+      type: string(50)
+    indicador3:
+      type: string
+    ind_a1c:
+      type: string(50)
+    ind_a2c:
+      type: string(50)
+    ind_a3c:
+      type: string(50)
+    ind_a4c:
+      type: string(50)
+    ind_a5c:
+      type: string(50)
+    indicador4:
+      type: string
+    ind_a1d:
+      type: string(50)
+    ind_a2d:
+      type: string(50)
+    ind_a3d:
+      type: string(50)
+    ind_a4d:
+      type: string(50)
+    ind_a5d:
+      type: string(50)
+    creado:
+      type: date
+  relations:
+    Programa:
+      class: programa
+      foreignAlias: Seccion9
+      onDelete: CASCADE
+      local: id_programa
+      foreign: id_programa
+semaforo:
+  tableName: semaforo
+  actAs:
+    Timestampable:
+      created:
+        alias: creado
+        disabled: false
+        name: creado
+      updated:
+        alias: actualizado
+        disabled: false
+        name: actualizado
+  columns:
+    id_semaforo:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_unidad_negocio:
+      type: integer(11)
+    id_certificado:
+      type: integer(11)
+    id_certificado_proceso:
+      type: integer(11)
+    calificacion:
+      type: decimal(3)
+      scale: 2
+    horas_acordadas:
+      type: integer(5)
+    tiempo_presencial:
+      type: integer(5)
+    tiempo_virtual:
+      type: integer(5)
+    comentarios_gerente:
+      type: string
+    comentarios_resultado:
+      type: string
+    auditoria_interna:
+      type: date
+    auditoria_proxima:
+      type: date
+    url_semaforo:
+      type: string(250)
+    creado:
+      type: timestamp
+    actualizado:
+      type: timestamp
+unidad:
+  tableName: unidad
+  actAs:
+    Timestampable:
+      created:
+        alias: creado
+        disabled: false
+        name: creado
+      updated:
+        alias: actualizado
+        disabled: false
+        name: actualizado
+  columns:
+    id_unidad:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_empresa:
+      type: integer(11)
+      notnull: true
+    id_usuario:
+      type: integer(11)
+      notnull: true
+    id_consultor:
+      type: integer(11)
+    id_gerente:
+      type: integer(11)
+    id_subdirector:
+      type: integer(11)
+    id_director_general:
+      type: integer(11)
+    logo:
+      type: string(300)
+    id_region:
+      type: integer(4)
+    nombre:
+      type: string(250)
+    sucursal:
+      type: string(128)
+    nombre_contacto:
+      type: string(240)
+    email:
+      type: string(250)
+    telefono:
+      type: string(50)
+    pais:
+      type: string(64)
+    estado:
+      type: string(64)
+    ciudad:
+      type: string(128)
+    municipio:
+      type: string(128)
+    direccion:
+      type: string
+    numero:
+      type: string(11)
+    delegacion:
+      type: string(128)
+    cp:
+      type: string(11)
+    referencia:
+      type: string
+    creado:
+      type: timestamp
+    actualizado:
+      type: timestamp
+  relations:
+    empresa:
+      onDelete: CASCADE
+      local: id_empresa
+      foreign: id_empresa
+    usuario:
+      onDelete: restrict
+      local: id_usuario
+      foreign: id_usuario
+    Region:
+      class: region
+      foreignAlias: Unidad
+      local: id_region
+      foreign: id_region
+    usuarioConsultor:
+      class: usuario
+      foreignAlias: unidadConsultor
+      local: id_consultor
+      foreign: id_usuario
+    UsuarioGte:
+      class: usuario
+      foreignAlias: UnidadGte
+      local: id_gerente
+      foreign: id_usuario
+    UsuarioSubd:
+      class: usuario
+      foreignAlias: UnidadSubd
+      local: id_subdirector
+      foreign: id_usuario
+    UsuarioDirg:
+      class: usuario
+      foreignAlias: UnidadDirg
+      local: id_director_general
+      foreign: id_usuario
+usuario:
+  tableName: usuario
+  actAs:
+    Timestampable:
+      created:
+        disabled: false
+        alias: creado
+        name: creado
+      updated:
+        alias: actualizado
+        disabled: false
+        name: actualizado
+  columns:
+    id_usuario:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    id_empresa:
+      type: integer(11)
+    id_grupo:
+      type: integer(11)
+    id_unidad:
+      type: integer(11)
+    id_comite:
+      type: integer(11)
+    foto:
+      type: string(300)
+    nombre:
+      type: string(128)
+    nombre_usuario:
+      unique: true
+      type: string(64)
+    primer_apellido:
+      type: string(64)
+    segundo_apellido:
+      type: string(64)
+    email:
+      type: string(250)
+    telefono_fijo:
+      type: string(20)
+    telefono_celular:
+      type: string(20)
+    email_emergencia:
+      type: string(200)
+    cargo:
+      type: string(64)
+    password:
+      type: string(64)
+    salt:
+      type: string(64)
+    palabra_clave:
+      type: string(30)
+    activo:
+      default: 1
+      type: boolean
+    tipo:
+      default: 0
+      type: integer(1)
+    creado:
+      type: timestamp
+    actualizado:
+      type: timestamp
+  relations:
+    usuario_grupo:
+      onDelete: restrict
+      local: id_grupo
+      foreign: id_grupo
+    empresa:
+      onDelete: restrict
+      local: id_empresa
+      foreign: id_empresa
+    Unidad:
+      class: unidad
+      foreignAlias: Usuario
+      local: id_unidad
+      foreign: id_unidad
+    Comiteusr:
+      class: comite
+      foreignAlias: Usuariocom
+      local: id_comite
+      foreign: id_comite
+    Comusu:
+      class: comite
+      refClass: comite_usuarios
+      local: id_usuario
+      foreign: id_comite
+usuario_grupo:
+  tableName: usuario_grupo
+  columns:
+    id_grupo:
+      primary: true
+      type: integer(11)
+      notnull: true
+      autoincrement: true
+    nombre:
+      type: string(64)
+    permisos:
+      type: string
+region:
+  columns:
+    id_region:
+      unique: true
+      primary: true
+      type: integer(4)
+      notnull: true
+      autoincrement: true
+    nombre:
+      type: string(200)
+comite_usuarios:
+  actAs:
+    Timestampable:
+      created:
+        disabled: false
+        alias: fecha_agregado
+      updated:
+        disabled: false
+  columns:
+    id_usuario:
+      primary: true
+      type: integer(11)
+      notnull: true
+    id_comite:
+      primary: true
+      type: integer(11)
+      notnull: true
+    cargo_comite:
+      type: string(45)
+    fecha_agregado:
+      type: date

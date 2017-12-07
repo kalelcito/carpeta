@@ -1,0 +1,11 @@
+register:
+  is_secure: false
+
+empresa:
+  is_secure: false
+
+sucursal:
+  is_secure: false
+
+usuario:
+  is_secure: false

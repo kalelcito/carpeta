@@ -1,0 +1,47 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/04-Settings
+
+prod:
+  .settings:
+    no_script_name:         true
+    logging_enabled:        false
+
+dev:
+  .settings:
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_DEPRECATED)."\n" ?>
+    web_debug:              true
+    cache:                  false
+    no_script_name:         false
+    etag:                   false
+
+test:
+  .settings:
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
+    cache:                  false
+    web_debug:              false
+    no_script_name:         false
+    etag:                   false
+
+demo:
+  .settings:
+    no_script_name:         false
+    logging_enabled:        false
+
+all:
+  .actions:
+    error_404_module:       inicio
+    error_404_action:       error404
+    login_module:           login
+    login_action:           index
+
+  .settings:
+    # Form security secret (CSRF protection)
+    csrf_secret:            7783a3902160ed4e62a85a53122cda6d5bf16856
+    default_culture:  es_MX        # Default user culture
+
+    # Output escaping settings
+    escaping_strategy:      true
+    escaping_method:        ESC_SPECIALCHARS
+
+    # Enable the database manager
+    use_database:           true
